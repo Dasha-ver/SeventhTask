@@ -11,29 +11,24 @@ import java.io.FileReader;
 
 public class TextDAOImpl {
 
-    private TextComponent textComponent;
-    private Text text;
-    private FileReader reader;
-    BufferedReader bufferedReader;
+    public static final String PATH_TO_FILE = "resources/text.txt";
 
+    public static Text getAllText () throws DAOException {
 
-    public Text getAllText () throws DAOException {
-
+        Text text;
+        FileReader reader = null;
         try {
             text = new Text();
-            reader = new FileReader("resources/text.txt");
-            bufferedReader = new BufferedReader(reader);
+            reader = new FileReader(PATH_TO_FILE);
+            BufferedReader bufferedReader = new BufferedReader(reader);
             String lineForRead = "";
             int lineCounter = 0;
 
             while ((lineForRead = bufferedReader.readLine()) != null) {
                 lineCounter++;
-                textComponent = new OrdinalString(lineForRead);
+                TextComponent textComponent = new OrdinalString(lineForRead);
                             text.add(textComponent);
             }
-        } catch (FileNotFoundException e) {
-            throw new DAOException(e);
-
         } catch (Exception e) {
             throw new DAOException(e);
 

@@ -2,11 +2,13 @@ package by.epamtc.viaryshko.task07.entity;
 
 import java.io.Serializable;
 
-public class OrdinalString extends TextComponent implements Serializable {
+public class CodeBlock extends TextComponent implements Serializable {
 
+    private Word word;
+    private PunctuationMark punctuationMark;
     private String line;
 
-    public OrdinalString(String line){
+    public CodeBlock(String line){
 
         this.line = line;
     }
@@ -19,4 +21,5 @@ public class OrdinalString extends TextComponent implements Serializable {
 
         System.out.println(getComponent());
     }
+
 }

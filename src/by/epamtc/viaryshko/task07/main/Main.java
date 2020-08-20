@@ -9,10 +9,9 @@ public class Main {
 
     public static void main(String [] args) throws DAOException {
 
-        TextDAOImpl t = new TextDAOImpl();
-        Printer printer = new Printer(t.getAllText());
+        Printer printer = new Printer(TextDAOImpl.getAllText());
      //   printer.printText();
-       Text text = t.getAllText();
-       System.out.print(text.receiveTextByString());
+       Text text = TextDAOImpl.getAllText();
+       System.out.print(text.receiveTextByOrdinalStrings());
     }
 }

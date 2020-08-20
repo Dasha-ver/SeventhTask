@@ -1,14 +1,16 @@
 package by.epamtc.viaryshko.task07.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Text extends TextComponent {
+public class Text extends TextComponent implements Serializable {
 
     private TextComponent textComponent;
-    private List<TextComponent> textComponents = new ArrayList<>();
+    private List<TextComponent> listWithTextComponents = new ArrayList<>();
     private StringBuilder stringBuilder;
+    private Iterator<TextComponent> iterator;
 
     public Text() {
 
@@ -16,36 +18,55 @@ public class Text extends TextComponent {
 
     public void add(TextComponent textComponent) {
         this.textComponent = textComponent;
-        textComponents.add(textComponent);
+        listWithTextComponents.add(textComponent);
+    }
+
+    public void remove(TextComponent textComponent){
+        this.textComponent = textComponent;
+        listWithTextComponents.remove(textComponent);
     }
 
     public TextComponent getChild(int i) {
-        return textComponents.get(i);
+        return listWithTextComponents.get(i);
     }
 
     public String getComponent() {
-        return textComponent.getComponent();
+        return textComponent.getComponent().replace("\n", "");
     }
 
-    public List<TextComponent> getTextComponents(){
-        return textComponents;
+    public List<TextComponent> getListWithTextComponents(){
+        return listWithTextComponents;
     }
 
-    public String receiveTextByString(){
+    public String receiveComponentByStrings(){
 
         stringBuilder = new StringBuilder();
-        Iterator<TextComponent> iterator = textComponents.iterator();
+
+        iterator = listWithTextComponents.iterator();
         while(iterator.hasNext()) {
 
             TextComponent textComponent = iterator.next();
-            stringBuilder.append(textComponent.getComponent());
+            stringBuilder.append(textComponent.getComponent().replace("\n",""));
+        }
+        return stringBuilder.toString();
+    }
+
+    public String receiveTextByOrdinalStrings(){
+
+        stringBuilder = new StringBuilder();
+
+      iterator = listWithTextComponents.iterator();
+        while(iterator.hasNext()) {
+
+            TextComponent textComponent = iterator.next();
+            stringBuilder.append(textComponent.getComponent()+"\n");
         }
         return stringBuilder.toString();
     }
 
     public void print(){
 
-        Iterator<TextComponent> iterator = textComponents.iterator();
+        iterator = listWithTextComponents.iterator();
         while(iterator.hasNext()){
 
             TextComponent textComponent = iterator.next();

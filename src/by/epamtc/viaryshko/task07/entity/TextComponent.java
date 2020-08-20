@@ -1,6 +1,8 @@
 package by.epamtc.viaryshko.task07.entity;
 
-public abstract class TextComponent {
+import java.io.Serializable;
+
+public abstract class TextComponent implements Serializable {
 
 
     public String getComponent(){
@@ -16,6 +18,10 @@ public abstract class TextComponent {
     }
 
     public void print(){
+        throw new UnsupportedOperationException();
+    }
+
+    public String receiveComponentByStrings(){
         throw new UnsupportedOperationException();
     }
 }
